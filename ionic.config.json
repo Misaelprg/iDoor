@@ -1,0 +1,7 @@
+{
+  "name": "FS Arduino",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
