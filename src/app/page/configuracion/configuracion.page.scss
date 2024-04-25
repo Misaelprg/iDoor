@@ -1,0 +1,44 @@
+.header {
+    background-color: white;
+}
+
+ion-toolbar, ion-item {
+    --background: white;
+}
+
+.list-md {
+    background: none;
+}
+
+ion-list-header {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.finger_btn {
+    --background: none;
+    --box-shadow: none;
+    --background-activated: none;
+    --background-activated-opacity: none;
+    --background-hover: none;
+    font-size: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .addFinger {
+        width: 80%;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        --border-color: rgb(203, 203, 203);
+        --border-width: medium;
+        --background: white;
+        .label-text {
+            color: red;
+        }
+    }
+}
+

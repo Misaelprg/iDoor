@@ -4,17 +4,23 @@
       <ion-title>
         Home
       </ion-title>
-      <ion-button color="secondary" class="bt_btn" (click)="setOpen(true)"><ion-icon name="bluetooth"></ion-icon> Conectar iDoor</ion-button>
+      <div *ngIf="this.isDeviceConnected; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock><ion-button color="danger" class="bt_btn" (click)="deviceDisconnect()"><ion-icon
+        name="bluetooth"></ion-icon> Desconectar iDoor</ion-button></ng-template>
+      <ng-template #elseBlock><ion-button color="secondary" class="bt_btn" (click)="checkBluetoothEnable()"><ion-icon
+        name="bluetooth"></ion-icon> Conectar iDoor</ion-button></ng-template>
+      
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <!-- <div id="container">
+  <ion-button (click)="adminPage()">Click Me</ion-button>
 
-    <ion-button (click)="sendData('1')">Mandar algo</ion-button>
-  </div> -->
+  <div *ngIf="this.isDeviceConnected" id="container">
+    <ion-button (click)="sendData('1')">Mandar 1</ion-button>
+    <ion-button (click)="sendData('0')">Mandar 0</ion-button>
+  </div> 
 
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
@@ -29,11 +35,10 @@
       <ion-content class="ion-padding">
         <div class="device" *ngFor="let device of this.pairedList; index as i;">
           <p>{{device.name}}</p>
-          <ion-button fill="clear" (click)= "selectDevice(i)">Conectar</ion-button>
+          <ion-button fill="clear" (click)="selectDevice(i)">Conectar</ion-button>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
 
 </ion-content>
-
