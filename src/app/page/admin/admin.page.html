@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color="light">Administrador de Huellas</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="secondary">
+
+  <div class="container">
+    <ion-title class="ion-text-center ion-margin-top" style="--color:white; font-weight: bold;">Agregar
+      Huellas</ion-title>
+    <ion-input [(ngModel)]="name" class="ion-margin addFinger" label="Tu Nombre" label-placement="fixed" fill="outline"
+      placeholder="Ingresa tu nombre"></ion-input>
+    <div *ngIf="this.isDeviceConnected; then thenBlock2 else elseBlock2"></div>
+  </div>
+  <ng-template #thenBlock2> <ion-button style="color:white; --background:rgb(0, 181, 0); font-weight:bold;"
+    (click)="sendByte('a', this.storageLenght);">Agregar Huella</ion-button>
+  </ng-template>
+  <ng-template #elseBlock2>
+    <ion-text color="danger" style="font-weight:bold; font-size:15px;">Primero conecte con iDoor</ion-text>
+  </ng-template>
+
+
+
+  <div class="btn_div">
+    <div *ngIf="this.isDeviceConnected; then thenBlock else elseBlock"></div>
+  </div>
+  <ng-template #elseBlock><ion-button class="bt_btn" (click)="checkBluetoothEnable()"><ion-icon
+    name="bluetooth"></ion-icon>Conectar iDoor</ion-button></ng-template>
+  <ng-template #thenBlock><ion-button color="danger" class="bt_btn" (click)="deviceDisconnect()"><ion-icon
+    name="bluetooth"></ion-icon>Desconectar iDoor</ion-button></ng-template>
+
+  <div *ngIf="this.fingers.length === 0; then noFingez else list"></div>
+  <ng-template #noFingez>
+    <p style="font-weight:bold; font-size:15px; color: white; text-align:center;">¡Empieza a registrar tus huellas!</p>
+  </ng-template>
+  <ng-template #list>
+    <ion-list [inset]="true">
+      <ion-list-header>
+        <ion-label>Huellas Registradas</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let item of this.fingers;" class="finger_row">
+        <ion-icon color="light" name="finger-print-outline"></ion-icon>
+        <ion-label color="light">{{item.nombre}}</ion-label>
+        <ion-button (click)="sendByte('b',item.id)" class="finger_btn">
+          <ion-icon color="danger" name="trash" slot="icon-only"></ion-icon>
+        </ion-button> 
+      </ion-item>
+    </ion-list>
+  </ng-template>
+  
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar class="modal_header">
+          <ion-title>Vincula tu iDoor</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="bt_modal ion-padding">
+        <div class="device" *ngFor="let device of this.pairedList; index as i;">
+          <p>{{device.name}}</p>
+          <ion-button fill="clear" (click)="selectDevice(i)">Conectar</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+
+

@@ -1,0 +1,17 @@
+.github_logo, .people_logo {
+    font-size: 40px
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+p:first-child {
+    font-size: 20px;
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}

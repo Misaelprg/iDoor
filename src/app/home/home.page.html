@@ -1,44 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <div class="header">
-      <ion-title>
-        Home
+      <ion-title color="light">
+        iDoor
       </ion-title>
-      <div *ngIf="this.isDeviceConnected; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock><ion-button color="danger" class="bt_btn" (click)="deviceDisconnect()"><ion-icon
-        name="bluetooth"></ion-icon> Desconectar iDoor</ion-button></ng-template>
-      <ng-template #elseBlock><ion-button color="secondary" class="bt_btn" (click)="checkBluetoothEnable()"><ion-icon
-        name="bluetooth"></ion-icon> Conectar iDoor</ion-button></ng-template>
-      
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button (click)="adminPage()">Click Me</ion-button>
 
-  <div *ngIf="this.isDeviceConnected" id="container">
-    <ion-button (click)="sendData('1')">Mandar 1</ion-button>
-    <ion-button (click)="sendData('0')">Mandar 0</ion-button>
-  </div> 
-
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Vincula tu iDoor</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Cerrar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <div class="device" *ngFor="let device of this.pairedList; index as i;">
-          <p>{{device.name}}</p>
-          <ion-button fill="clear" (click)="selectDevice(i)">Conectar</ion-button>
-        </div>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
+  <div class="welcome">
+    <ion-title>¡Bienvenido a Casa!</ion-title>
+    <p>Ultimas entradas y salidas</p>
+    <ion-list class="ion-padding">
+      <ion-item>
+        <ion-grid [fixed]="true">
+          <ion-row class="ion-align-items-center">
+            <ion-col>Salida</ion-col>
+            <ion-col>Hora: 8:27am</ion-col>
+            <ion-col>Dia: Viernes</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid [fixed]="true">
+          <ion-row class="ion-align-items-center">
+            <ion-col>Entrada</ion-col>
+            <ion-col>Hora: 7:13pm</ion-col>
+            <ion-col>Dia: Viernes</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid [fixed]="true">
+          <ion-row class="ion-align-items-center">
+            <ion-col>Salida</ion-col>
+            <ion-col>Hora: 7:13am</ion-col>
+            <ion-col>Dia: Sábado</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid [fixed]="true">
+          <ion-row class="ion-align-items-center">
+            <ion-col>Entrada</ion-col>
+            <ion-col>Hora: 5:03pm</ion-col>
+            <ion-col>Dia: Sábado</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
 
 </ion-content>

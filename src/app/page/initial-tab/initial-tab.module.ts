@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InicioPageRoutingModule } from './inicio-routing.module';
+import { InitialTabPageRoutingModule } from './initial-tab-routing.module';
 
-import { InicioPage } from './inicio.page';
+import { InitialTabPage } from './initial-tab.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioPageRoutingModule
+    InitialTabPageRoutingModule
   ],
-  declarations: [InicioPage]
+  declarations: [InitialTabPage]
 })
-export class InicioPageModule {}
+export class InitialTabPageModule {}
